@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: builder  # For development
+      # target: production  # Uncomment for production builds
+    image: react-app
+    container_name: react-frontend
+    environment:
+      - NODE_ENV=development
+      - CHOKIDAR_USEPOLLING=true  # For hot-reload in Docker
+    volumes:
+      - ./src:/app/src  # Live code reload
+      - ./public:/app/public
+      - /app/node_modules  # Isolate host/node_modules
+    ports:
+      - "3000:3000"  # Vite dev server
+    networks:
+      - app-network
+    # For production use instead:
+    # ports:
+    #   - "80:80"  # Nginx port
+    # deploy:
+    #   resources:
+    #     limits:
+    #       cpus: '0.5'
+    #       memory: 512M
+
+  # Example backend service (Node.js API)
+  api:
+    image: node:18-alpine
+    container_name: react-api
+    working_dir: /app
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ../api:/app  # Mount your API code
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+    depends_on:
+      - redis
+
+  # Database example
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+    volumes:
+      - redis_data:/data
+
+  # Monitoring example
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  redis_data:

@@ -1,0 +1,50 @@
+{
+  "name": "edtechfrontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "prepare": "husky install",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^5.0.1",
+    "@reduxjs/toolkit": "^2.6.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "axios": "^1.8.4",
+    "date-fns": "^4.1.0",
+    "eslint-plugin-jest-dom": "^5.5.0",
+    "eslint-plugin-testing-library": "^7.1.1",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
+    "lodash-es": "^4.17.21",
+    "prettier": "^3.5.3",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-hook-form": "^7.55.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.5.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.21.0",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "@vitejs/plugin-react-swc": "^3.8.0",
+    "eslint": "^9.21.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^15.15.0",
+    "husky": "^8.0.0",
+    "rollup-plugin-visualizer": "^5.14.0",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.24.1",
+    "vite": "^6.2.0"
+  }
+}
