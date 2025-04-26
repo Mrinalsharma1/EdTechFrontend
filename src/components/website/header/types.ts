@@ -38,3 +38,6 @@ export interface SubcategoryItem {
     listType: 'generic';
   };
 }
+export interface NavData {
+  navigationCategories: TopLevelCategoryWithSubcategories[];
+}

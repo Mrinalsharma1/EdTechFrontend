@@ -21,8 +21,8 @@ export const buttonVariants = cva(
       },
       size: {
         default: 'h-10 px-4',
-        sm: 'h-[40px] px-3 text-sm font-medium',
-        lg: 'h-[47px] px-3 min-w-[90px]',
+        sm: 'h-[35px] px-3 text-sm font-medium',
+        lg: 'h-[40px] px-3 min-w-[90px]',
         icon: 'h-10 w-10',
       },
     },

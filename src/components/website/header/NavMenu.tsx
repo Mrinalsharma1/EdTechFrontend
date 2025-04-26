@@ -7,11 +7,11 @@ import {
 } from '@/components/ui/hover-card';
 import { ChevronRight } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { navigationData, labelData } from './data';
+import { labelData } from './data';
 import { TopLevelCategoryWithSubcategories, Label } from './types';
 import { cn } from '@/lib/utils';
-interface NavbarState {
-  navigationCategories: TopLevelCategoryWithSubcategories[];
+
+interface NavMenuState {
   subSubcategoriesBySubLevelId: Record<number, Label[]>;
   loadingSubcategoryId: number | null;
   activeTopCategoryId: number | null;
@@ -20,9 +20,12 @@ interface NavbarState {
   errorState: string | null;
 }
 
-const NavMenu = () => {
-  const [navState, setNavState] = useState<NavbarState>({
-    navigationCategories: [],
+const NavMenu = ({
+  navigationCategories,
+}: {
+  navigationCategories: TopLevelCategoryWithSubcategories[];
+}) => {
+  const [navMenuData, setNavMenuData] = useState<NavMenuState>({
     subSubcategoriesBySubLevelId: {},
     loadingSubcategoryId: null,
     activeTopCategoryId: null,
@@ -32,36 +35,12 @@ const NavMenu = () => {
   });
 
   useEffect(() => {
-    const fetchNavigationData = async () => {
-      try {
-        // const response = await fetch('/api/navigation-data')
-        // const data = await response.json()
-
-        setTimeout(() => {
-          setNavState({
-            navigationCategories: navigationData,
-            subSubcategoriesBySubLevelId: {},
-            loadingSubcategoryId: null,
-            activeTopCategoryId: null,
-            activeSubCategoryId: null,
-            isInitialLoading: false,
-            errorState: null,
-          });
-        }, 2000);
-      } catch (error) {
-        console.error('Error fetching navigation data:', error);
-      }
-    };
-    fetchNavigationData();
-  }, []);
-
-  useEffect(() => {
     const fetchLabelData = async () => {
       try {
-        const subcategoryId = navState.activeSubCategoryId;
+        const subcategoryId = navMenuData.activeSubCategoryId;
         if (subcategoryId !== null) {
           setTimeout(() => {
-            setNavState((prevState) => ({
+            setNavMenuData((prevState) => ({
               ...prevState,
               subSubcategoriesBySubLevelId: {
                 ...prevState.subSubcategoriesBySubLevelId,
@@ -75,23 +54,26 @@ const NavMenu = () => {
       }
     };
     fetchLabelData();
-  }, [navState.activeSubCategoryId, navState.subSubcategoriesBySubLevelId]);
+  }, [
+    navMenuData.activeSubCategoryId,
+    navMenuData.subSubcategoriesBySubLevelId,
+  ]);
 
   const handleTopCategoryHover = (categoryId: number) => {
-    setNavState((prevState) => ({
+    setNavMenuData((prevState) => ({
       ...prevState,
       activeTopCategoryId: categoryId,
     }));
   };
 
   const handleSubCategoryHover = (subcategoryId: number) => {
-    setNavState((prevState) => ({
+    setNavMenuData((prevState) => ({
       ...prevState,
       activeSubCategoryId: subcategoryId,
     }));
   };
 
-  console.log(navState);
+  console.log(navMenuData);
   return (
     <div className='h-full flex items-center justify-center gap-4 ml-4'>
       <HoverCard openDelay={0} closeDelay={150}>
@@ -118,7 +100,7 @@ const NavMenu = () => {
                 id='nav-level-one'
                 className='relative w-[18rem] min-h-[40rem] border-r border-gray-100 bg-gray-50/50'
                 onMouseEnter={() =>
-                  setNavState((prevState) => ({
+                  setNavMenuData((prevState) => ({
                     ...prevState,
                     activeSubCategoryId: null,
                   }))
@@ -132,7 +114,7 @@ const NavMenu = () => {
                 </h2>
 
                 <ul id='categories-list' className='list-none py-3 space-y-0.5'>
-                  {navState.navigationCategories.map((category) => (
+                  {navigationCategories.map((category) => (
                     <li
                       key={category.metadata.categoryId}
                       className='transition-all duration-200 px-3'
@@ -144,7 +126,7 @@ const NavMenu = () => {
                         href={category.metadata.url}
                         className={cn(
                           'flex items-center justify-between py-3 px-4 rounded-none group transition-all duration-200',
-                          navState.activeTopCategoryId ===
+                          navMenuData.activeTopCategoryId ===
                             category.metadata.categoryId
                             ? 'text-blue-600 bg-white shadow-sm'
                             : 'text-gray-700 hover:text-blue-600 hover:bg-white hover:shadow-sm'
@@ -157,7 +139,7 @@ const NavMenu = () => {
                           className={cn(
                             'transition-transform duration-200',
                             'group-hover:text-blue-500 group-hover:translate-x-0.5',
-                            navState.activeTopCategoryId ===
+                            navMenuData.activeTopCategoryId ===
                               category.metadata.categoryId
                               ? 'text-blue-500 translate-x-0.5'
                               : 'text-gray-400'
@@ -175,7 +157,7 @@ const NavMenu = () => {
                 id='nav-level-two'
                 className={cn(
                   'relative w-[18rem] min-h-[40rem] border-r border-gray-100 bg-white transition-all duration-300',
-                  navState.activeTopCategoryId ? 'block' : 'hidden'
+                  navMenuData.activeTopCategoryId ? 'block' : 'hidden'
                 )}
               >
                 <h2
@@ -183,10 +165,10 @@ const NavMenu = () => {
                   className='text-lg font-semibold flex justify-start border-b border-gray-100 py-4 px-6 text-gray-800 bg-white sticky top-0'
                 >
                   {
-                    navState.navigationCategories.find(
+                    navigationCategories.find(
                       (category) =>
                         category.metadata.categoryId ===
-                        navState.activeTopCategoryId
+                        navMenuData.activeTopCategoryId
                     )?.metadata.name
                   }
                 </h2>
@@ -195,11 +177,11 @@ const NavMenu = () => {
                   id='subcategories-list'
                   className='list-none py-3 space-y-0.5'
                 >
-                  {navState.navigationCategories
+                  {navigationCategories
                     .find(
                       (category) =>
                         category.metadata.categoryId ===
-                        navState.activeTopCategoryId
+                        navMenuData.activeTopCategoryId
                     )
                     ?.sublist.subcategories.map((subcategory) => (
                       <li
@@ -215,7 +197,7 @@ const NavMenu = () => {
                           href={subcategory.metadata.url}
                           className={cn(
                             'flex items-center justify-between py-3 px-4 rounded-none group transition-all duration-200',
-                            navState.activeSubCategoryId ===
+                            navMenuData.activeSubCategoryId ===
                               subcategory.metadata.subcategoryId
                               ? 'text-blue-600 bg-blue-50 shadow-sm'
                               : 'text-gray-700 hover:text-blue-600 hover:bg-gray-50'
@@ -228,7 +210,7 @@ const NavMenu = () => {
                             className={cn(
                               'transition-transform duration-200',
                               'group-hover:text-blue-500 group-hover:translate-x-0.5',
-                              navState.activeSubCategoryId ===
+                              navMenuData.activeSubCategoryId ===
                                 subcategory.metadata.subcategoryId
                                 ? 'text-blue-500 translate-x-0.5'
                                 : 'text-gray-400'
@@ -246,7 +228,7 @@ const NavMenu = () => {
                 id='nav-level-three'
                 className={cn(
                   'relative w-[18rem] min-h-[40rem] bg-white transition-all duration-300',
-                  navState.activeSubCategoryId ? 'block' : 'hidden'
+                  navMenuData.activeSubCategoryId ? 'block' : 'hidden'
                 )}
               >
                 <h2
@@ -254,12 +236,12 @@ const NavMenu = () => {
                   className='text-lg font-semibold flex justify-start border-b border-gray-100 py-4 px-6 text-gray-800 bg-white sticky top-0'
                 >
                   {
-                    navState.navigationCategories
+                    navigationCategories
                       .flatMap((category) => category.sublist.subcategories)
                       .find(
                         (subcategory) =>
                           subcategory.metadata.subcategoryId ===
-                          navState.activeSubCategoryId
+                          navMenuData.activeSubCategoryId
                       )?.metadata.name
                   }
                 </h2>
@@ -268,9 +250,9 @@ const NavMenu = () => {
                   id='subcategories-list'
                   className='list-none py-3 space-y-0.5'
                 >
-                  {navState.activeSubCategoryId &&
-                    navState.subSubcategoriesBySubLevelId[
-                      navState.activeSubCategoryId
+                  {navMenuData.activeSubCategoryId &&
+                    navMenuData.subSubcategoriesBySubLevelId[
+                      navMenuData.activeSubCategoryId
                     ]?.map((label: Label) => (
                       <li
                         key={label.id}
