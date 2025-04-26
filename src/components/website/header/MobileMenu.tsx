@@ -68,7 +68,6 @@ export const MobileMenu = ({
     setMenuState((prev) => ({
       ...prev,
       isOpen: open,
-      // Reset state when closing menu
       ...(open === false && {
         activeTopCategoryId: null,
         activeSubCategoryId: null,
