@@ -1,21 +1,22 @@
 // src/routes/routeConfig.tsx
 
-import { lazy } from 'react'
+import { lazy } from 'react';
 
-import ProtectedRoute from './ProtectedRoute'
-import AdminLayout from '@/layouts/AdminLayout'
-import TeacherLayout from '@/layouts/TeacherLayout'
-import StudentLayout from '@/layouts/StudentLayout'
-import WebsiteLayout from '@/layouts/WebsiteLayout'
+import ProtectedRoute from './ProtectedRoute';
+import AdminLayout from '@/layouts/AdminLayout';
+import TeacherLayout from '@/layouts/TeacherLayout';
+import StudentLayout from '@/layouts/StudentLayout';
+import WebsiteLayout from '@/layouts/WebsiteLayout';
+import Memberships from '@/components/website/memberships/Memberships';
 
-const Home = lazy(() => import('@/pages/website/Home'))
-const Login = lazy(() => import('@/pages/auth/Login'))
-const Unauthorized = lazy(() => import('@/pages/auth/Unauthorized'))
-const NotFound = lazy(() => import('@/pages/NotFound'))
+const Home = lazy(() => import('@/pages/website/Home'));
+const Login = lazy(() => import('@/pages/auth/Login'));
+const Unauthorized = lazy(() => import('@/pages/auth/Unauthorized'));
+const NotFound = lazy(() => import('@/pages/NotFound'));
 
-const AdminDashboard = lazy(() => import('@/pages/admin/Dashboard'))
-const TeacherDashboard = lazy(() => import('@/pages/teacher/Dashboard'))
-const StudentDashboard = lazy(() => import('@/pages/student/Dashboard'))
+const AdminDashboard = lazy(() => import('@/pages/admin/Dashboard'));
+const TeacherDashboard = lazy(() => import('@/pages/teacher/Dashboard'));
+const StudentDashboard = lazy(() => import('@/pages/student/Dashboard'));
 
 export const routes = [
   // Website Routes
@@ -28,6 +29,11 @@ export const routes = [
   {
     path: '/login',
     element: <Login />,
+  },
+  // Memberships Routes
+  {
+    path: '/memberships',
+    element: <Memberships />,
   },
   // Unauthorized Routes
   {
@@ -74,4 +80,4 @@ export const routes = [
     path: '*',
     element: <NotFound />,
   },
-]
+];
