@@ -3,8 +3,7 @@ import Testimonials from '@/components/website/testimonials/testimonial';
 
 const Home = () => {
   return (
-    <main className='p-8 text-center'>
-      <h1 className='text-4xl font-bold'>Welcome to the eLearning Platform</h1>
+    <main className=''>
       <Memberships />
       <Testimonials />
       <p className='mt-4 text-lg text-gray-600 cursor-pointer'>

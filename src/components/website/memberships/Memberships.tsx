@@ -5,7 +5,7 @@ import InfoCardSM from './InfoCardSM';
 
 const Memberships: React.FC = () => {
   return (
-    <div className=' mx-auto p-4'>
+    <div className=' mx-auto lg:p-4 sm:p-0'>
       <h2 className='flex text-3xl font-bold text-center mb-8'>
         Our Membership Plans
       </h2>

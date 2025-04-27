@@ -10,8 +10,8 @@ const CardTestimonialMobile = ({
   className: string;
 }) => {
   return (
-    <CarouselItem className={`w-[300px] flex-shrink-0 snap-start ${className}`}>
-      <Card className='h-[300px] bg-white border border-[#d1d2e0] rounded-[0.8rem] flex flex-col p-4'>
+    <CarouselItem className={`flex justify-center ${className}`}>
+      <Card className=' max-w-[260px] xs:max-w-[300px] sm:max-w-[300px] h-[300px] bg-white border border-[#d1d2e0] rounded-[0.8rem] flex flex-col p-4 items-center'>
         <CardContent className='flex flex-col justify-between h-full'>
           <CardDescription>
             <img
