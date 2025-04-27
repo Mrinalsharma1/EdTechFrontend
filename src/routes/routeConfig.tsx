@@ -7,7 +7,6 @@ import AdminLayout from '@/layouts/AdminLayout';
 import TeacherLayout from '@/layouts/TeacherLayout';
 import StudentLayout from '@/layouts/StudentLayout';
 import WebsiteLayout from '@/layouts/WebsiteLayout';
-import Memberships from '@/components/website/memberships/Memberships';
 
 const Home = lazy(() => import('@/pages/website/Home'));
 const Login = lazy(() => import('@/pages/auth/Login'));
@@ -29,11 +28,6 @@ export const routes = [
   {
     path: '/login',
     element: <Login />,
-  },
-  // Memberships Routes
-  {
-    path: '/memberships',
-    element: <Memberships />,
   },
   // Unauthorized Routes
   {
