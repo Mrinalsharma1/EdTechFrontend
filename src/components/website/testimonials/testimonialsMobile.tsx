@@ -1,11 +1,6 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-} from '../../components/ui/card';
-import { Testimonial } from '../../constants/testimonial';
-import { CarouselItem } from '../../components/ui/carousel';
+import { Card, CardContent, CardDescription, CardFooter } from '../../ui/card';
+import { Testimonial } from '../../../constants/testimonial';
+import { CarouselItem } from '../../ui/carousel';
 
 const CardTestimonialMobile = ({
   TestimonialItem,

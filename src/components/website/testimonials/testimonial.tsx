@@ -1,13 +1,13 @@
 // import React, { useEffect, useState } from "react";
-import { testimonials } from '../../constants/testimonial';
+import { testimonials } from '../../../constants/testimonial';
 import {
   Carousel,
   CarouselContent,
   CarouselNext,
   CarouselPrevious,
-} from '../../components/ui/carousel';
-import CardTestimonialDesktop from '../website/testimonialsDesktop';
-import CardTestimonialMobile from '../website/testimonialsMobile';
+} from '../../ui/carousel';
+import CardTestimonialDesktop from './testimonialsDesktop';
+import CardTestimonialMobile from './testimonialsMobile';
 
 const CarouselFunction: React.FC = () => {
   return (
