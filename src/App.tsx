@@ -1,12 +1,10 @@
 import './App.css'
-import HelloWorld from './components/common/HelloWorld/HelloWorld'
+import { useRoutes } from "react-router-dom";
+import { routes } from "@/routes/routeConfig";
 
 function App() {
-  return (
-    <>
-      <HelloWorld />
-    </>
-  )
+  const element = useRoutes(routes);
+  return element;
 }
 
-export default App
+export default App;
