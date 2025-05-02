@@ -5,8 +5,7 @@ const WebsiteLayout = () => {
   return (
     <div className='min-h-screen flex flex-col'>
       <Navbar />
-
-      <main className='flex-1 p-6 bg-gray-50'>
+      <main className='flex-1 p-6 md:p-10 bg-white'>
         <Outlet />
       </main>
     </div>
