@@ -5,7 +5,9 @@ const WebsiteLayout = () => {
   return (
     <div className='min-h-screen flex flex-col'>
       <Navbar />
-      <main className='flex-1 p-6 md:p-10 bg-white'>
+      {/* Remove horizontal padding from main */}
+      {/* The vertical padding (py-*) should now be managed by individual sections */}
+      <main className='flex-1 bg-white'>
         <Outlet />
       </main>
     </div>
