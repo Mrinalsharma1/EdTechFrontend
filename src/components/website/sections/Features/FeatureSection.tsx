@@ -23,9 +23,9 @@ const FeatureSection = () => {
 
     <div id='feature-container' className='w-full py-4 bg-[#F6F7F9]'>
       <div className="px-4 xl:container mx-auto "> 
-        <div id="heading-container" >
+        <div id="heading-container" className="mb-2" >
           <div id="feature-heading">
-            <h2 className="font-heading-serif text-[clamp(1.9rem,calc(1.5rem+0.65*calc((100vw-36rem)/55)),2.2rem)] font-semibold text-left max-w-[36em] leading-normal">
+            <h2 className="font-heading-serif text-[clamp(1.8rem,calc(1.6rem+0.65*calc((100vw-36rem)/55)),2.2rem)] font-semibold text-left max-w-[36em] leading-[2rem]">
               Learning focused on your goals
             </h2>
           </div>
@@ -36,7 +36,7 @@ const FeatureSection = () => {
         </div>
 
         <div id="mobile-feature" className="block md:hidden">
-          <MobileFeature/>
+          <MobileFeature featureData={featureData}/>
         </div>
 
       </div> 
