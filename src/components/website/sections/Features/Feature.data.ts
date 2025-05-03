@@ -1,7 +1,9 @@
+import { FeatureItem } from "./feature.types";
+
 export const data=[
     {
         "heading": "Hands-on training",
-        "description": "<p>Upskill effectively with AI-powered coding exercises, practice tests, and quizzes.</p>",
+        "description": "Upskill effectively with AI-powered coding exercises, practice tests, and quizzes.",
         "contentUrl": null,
         "contentUrlText": null,
         "labelText": "",
@@ -17,7 +19,7 @@ export const data=[
     },
     {
         "heading": "Certification prep",
-        "description": "<p>Prep for industry-recognized certifications by solving real-world challenges and earn badges along the way.</p>",
+        "description": "Prep for industry-recognized certifications by solving real-world challenges and earn badges along the way.",
         "contentUrl": "https://www.udemy.com/browse/certification/",
         "contentUrlText": "Explore courses",
         "labelText": "",
@@ -33,7 +35,7 @@ export const data=[
     },
     {
         "heading": "Insights and analytics",
-        "description": "<p>Fast-track goals with advanced insights plus a dedicated customer success team to help drive effective learning.</p>",
+        "description": "Fast-track goals with advanced insights plus a dedicated customer success team to help drive effective learning.",
         "contentUrl": "https://business.udemy.com/analytics/?locale=en_US&user_type=visitor&utm_type=mx",
         "contentUrlText": "Find out more",
         "labelText": "Enterprise Plan",
@@ -49,7 +51,7 @@ export const data=[
     },
     {
         "heading": "Customizable content",
-        "description": "<p>Create tailored learning paths for team and organization goals and even host your own content and resources.</p>",
+        "description": "Create tailored learning paths for team and organization goals and even host your own content and resources.",
         "contentUrl": "https://business.udemy.com/user-management/?locale=en_US&utm_type=mx",
         "contentUrlText": "Find out more",
         "labelText": "Enterprise Plan",

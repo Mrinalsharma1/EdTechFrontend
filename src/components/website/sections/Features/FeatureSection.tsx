@@ -1,7 +1,24 @@
 import DesktopFeature from "./DesktopFeature"
 import MobileFeature from "./MobileFeature"
+import {data} from "./Feature.data"
+import { useEffect, useState } from "react"
+import { FeatureItem } from "./feature.types"
 
 const FeatureSection = () => {
+  
+  const[featureData,setFeatureData]=useState<FeatureItem[]>([]);
+
+ useEffect(()=>{
+  const fetchFeatureData=async()=>{
+    setTimeout(() => {
+    setFeatureData(data)
+    }, (3000));
+  }
+  fetchFeatureData();
+
+ },[])
+
+
   return (
 
     <div id='feature-container' className='w-full py-4 bg-[#F6F7F9]'>
@@ -15,7 +32,7 @@ const FeatureSection = () => {
         </div>
 
         <div id="desktop-feature" className="hidden md:block">
-          <DesktopFeature/>
+          <DesktopFeature featureData={featureData}/>
         </div>
 
         <div id="mobile-feature" className="block md:hidden">
