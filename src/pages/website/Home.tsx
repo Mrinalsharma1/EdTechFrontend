@@ -1,9 +1,11 @@
+import MainCarousel from '@/components/website/mainCarousel/MainCarousel';
 import Memberships from '@/components/website/memberships/Memberships';
 import Testimonials from '@/components/website/testimonials/testimonial';
 
 const Home = () => {
   return (
     <main className=''>
+      <MainCarousel />
       <Memberships />
       <Testimonials />
       <p className='mt-4 text-lg text-gray-600 cursor-pointer'>
