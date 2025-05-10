@@ -3,10 +3,12 @@ name: CI - Build & Push Docker Image
 on:
   push:
     branches:
+      - dev
       - stage
       - prod
   pull_request:
     branches:
+      - dev
       - stage
       - prod
 
@@ -31,15 +33,18 @@ jobs:
 
       - name: Build Docker image
         run: |
-          # For stage and prod, use the respective Dockerfile
-          docker build -f Dockerfile -t edtechci/edtechfrontend:${{ steps.vars.outputs.tag }} .
+          if [ "${{ github.ref_name }}" == "dev" ]; then
+            docker build -f Dockerfile.dev -t edtechci/edtech-frontend:${{ steps.vars.outputs.tag }} .
+          else
+            docker build -f Dockerfile -t edtechci/edtech-frontend:${{ steps.vars.outputs.tag }} .
+          fi
 
       - name: Push Docker image
         run: |
-          docker push edtechci/edtechfrontend:${{ steps.vars.outputs.tag }}
+          docker push edtechci/edtech-frontend:${{ steps.vars.outputs.tag }}
 
       - name: Optionally tag as latest (only for prod)
         if: github.ref_name == 'prod'
         run: |
-          docker tag edtechci/edtechfrontend:${{ steps.vars.outputs.tag }} edtechci/edtechfrontend:latest
-          docker push edtechci/edtechfrontend:latest
+          docker tag edtechci/edtech-frontend:${{ steps.vars.outputs.tag }} edtechci/edtech-frontend:latest
+          docker push edtechci/edtech-frontend:latest
