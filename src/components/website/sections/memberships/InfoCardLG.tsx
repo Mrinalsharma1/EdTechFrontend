@@ -1,8 +1,8 @@
 import React from 'react';
 import { Membership } from '@/constants/Memberships';
-import success_icon from '../../../assets/images/success_icon.svg';
-import individual_person from '../../../assets/images/individual_person.svg';
-import group_people from '../../../assets/images/group_people.svg';
+import success_icon from '@/assets/images/success_icon.svg';
+import individual_person from '@/assets/images/individual_person.svg';
+import group_people from '@/assets/images/group_people.svg';
 
 interface MembershipCardProps {
   membership: Membership;

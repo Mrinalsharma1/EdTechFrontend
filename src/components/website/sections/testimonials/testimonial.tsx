@@ -1,11 +1,11 @@
 // import React, { useEffect, useState } from "react";
-import { testimonials } from '../../../constants/testimonial';
+import { testimonials } from '@/constants/testimonial';
 import {
   Carousel,
   CarouselContent,
   CarouselNext,
   CarouselPrevious,
-} from '../../ui/carousel';
+} from '@/components/ui/carousel';
 import CardTestimonialDesktop from './testimonialsDesktop';
 import CardTestimonialMobile from './testimonialsMobile';
 

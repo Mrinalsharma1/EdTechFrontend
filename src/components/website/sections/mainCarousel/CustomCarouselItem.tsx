@@ -1,6 +1,6 @@
 import React from 'react';
-import main_carousel_2_lg from '../../../assets/images/main_carousel_2_lg.jpg';
-import main_carousel_2_sm from '../../../assets/images/main_carousel_2_sm.jpg';
+import main_carousel_2_lg from '@/assets/images/main_carousel_2_lg.jpg';
+import main_carousel_2_sm from '@/assets/images/main_carousel_2_sm.jpg';
 import { MainCarouselItem } from '@/constants/CarouselItems';
 import { Link } from 'react-router-dom';
 import { buttonVariants } from '@/components/ui/button-variants';

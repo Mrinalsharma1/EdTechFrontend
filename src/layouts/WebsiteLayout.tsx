@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import Navbar from '@/components/website/header/Navbar';
+import { MainFooter } from '@/components/website/footer/mainfooter';
 
 const WebsiteLayout = () => {
   return (
@@ -8,6 +9,7 @@ const WebsiteLayout = () => {
       <main className='flex-1 bg-white'>
         <Outlet />
       </main>
+      <MainFooter/>
     </div>
   );
 };
