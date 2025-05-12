@@ -155,3 +155,91 @@ body {
 .font-heading{
   font-family: var(--font-stack-heading);
 }
+@layer utilities {
+  .text-fluid-heading {
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: 700;
+    font-family:
+      Udemy Sans,
+      -apple-system,
+      BlinkMacSystemFont,
+      Roboto,
+      'Segoe UI',
+      Helvetica,
+      Arial,
+      sans-serif,
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol';
+  }
+  .text-fluid-heading2 {
+    line-height: 1.3;
+    font-weight: 700;
+    font-family:
+      'SF Pro Text',
+      -apple-system,
+      BlinkMacSystemFont,
+      Roboto,
+      'Segoe UI',
+      Helvetica,
+      Arial,
+      sans-serif,
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol';
+  }
+  .text-fluid-body {
+    font-size: 14px;
+    line-height: 1.5rem;
+    font-weight: 400;
+    font-family:
+      'Udemy Sans',
+      'SF Pro Text',
+      -apple-system,
+      BlinkMacSystemFont,
+      Roboto,
+      'Segoe UI',
+      Helvetica,
+      Arial,
+      sans-serif,
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol';
+  }
+  .text-fluid-body2 {
+    font-size: 14px;
+    line-height: 1.2;
+    font-weight: 400;
+    font-family:
+      'Udemy Sans',
+      'SF Pro Text',
+      -apple-system,
+      BlinkMacSystemFont,
+      Roboto,
+      'Segoe UI',
+      Helvetica,
+      Arial,
+      sans-serif,
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol';
+  }
+  .text-fluid-body3 {
+    font-size: 16px;
+    font-weight: 500;
+    font-family:
+      'Udemy Sans',
+      'SF Pro Text',
+      -apple-system,
+      BlinkMacSystemFont,
+      Roboto,
+      'Segoe UI',
+      Helvetica,
+      Arial,
+      sans-serif,
+      'Apple Color Emoji',
+      'Segoe UI Emoji',
+      'Segoe UI Symbol';
+  }
+}
