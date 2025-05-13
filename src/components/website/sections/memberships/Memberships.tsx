@@ -2,15 +2,16 @@ import React from 'react';
 import { memberships } from '@/constants/Memberships';
 import InfoCardLG from './InfoCardLG';
 import InfoCardSM from './InfoCardSM';
+import SectionLayout from '@/components/website/layouts/SectionLayout';
 
 const Memberships: React.FC = () => {
   return (
-    <div className=' mx-auto lg:p-4 sm:p-0'>
+    <SectionLayout>
       <h2 className='flex text-3xl font-bold text-center mb-8'>
         Our Membership Plans
       </h2>
       {memberships && (
-        <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6 '>
+        <div className='grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 gap-6'>
           {memberships.map((membership, index) => (
             <div
               key={index}
@@ -22,7 +23,7 @@ const Memberships: React.FC = () => {
           ))}
         </div>
       )}
-    </div>
+    </SectionLayout>
   );
 };
 
