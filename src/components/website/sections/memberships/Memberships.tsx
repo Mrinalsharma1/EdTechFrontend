@@ -6,8 +6,8 @@ import SectionLayout from '@/components/website/layouts/SectionLayout';
 
 const Memberships: React.FC = () => {
   return (
-    <SectionLayout>
-      <h2 className='flex text-3xl font-bold text-center mb-8'>
+    <SectionLayout  background='bg-[#F6F7F9]'>
+      <h2 className='flex text-2xl font-bold text-center mb-8'>
         Our Membership Plans
       </h2>
       {memberships && (

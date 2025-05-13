@@ -7,9 +7,12 @@ import {
 } from '@/components/ui/carousel';
 import CustomCarouselItem from './CustomCarouselItem';
 import { mainCarouselItems } from '@/constants/CarouselItems';
+import SectionLayout from '@/components/website/layouts/SectionLayout';
+
 function MainCarousel() {
   return (
-    <div className='p-0 mt-[-30px] w-full'>
+   <SectionLayout className=''>
+     <div className='w-full'>
       <Carousel
         opts={{
           align: 'start',
@@ -29,6 +32,7 @@ function MainCarousel() {
         <CarouselNext className='absolute right-[10px] top-[30%] sm:top-1/2' />
       </Carousel>
     </div>
+    </SectionLayout>
   );
 }
 

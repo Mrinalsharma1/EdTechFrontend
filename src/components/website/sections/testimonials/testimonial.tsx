@@ -12,7 +12,7 @@ import SectionLayout from '@/components/website/layouts/SectionLayout';
 
 const CarouselFunction: React.FC = () => {
   return (
-    <SectionLayout background='bg-[rgba(231,228,226,0.315)]'>
+    <SectionLayout >
       <div className='flex flex-col md:flex-row md:items-start md:justify-between mb-6'>
         <h2 className='w-full font-bold text-[#2d2f31] text-[clamp(1.75rem,3vw,3rem)] leading-tight break-words md:whitespace-nowrap mb-4'>
           See what others are achieving through learning
