@@ -1,54 +1,74 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import FilterPills from "./FilterPills";
-import { TabItem } from "./skillsHub.types";
+import { TabItem,ActiveTabState } from "./skillsHub.types";
+import CourseCarousel from "../CourseCarousel/CourseCarousel";
 
 interface DesktopSkillsProps{
-  tabsData:TabItem[], 
-  getActivePillIndex:(title:string)=>number,
-  handlePillSelect:(tabTitle:string, pillIndex:number)=>void
-
+  tabsData:TabItem[],
+  activeTabState: ActiveTabState; 
+  handlePillSelect:(tabTitle:string, pillIndex:number)=>void;
+  loadMoreCourses: (tabTitle: string) => void; 
+  handleTabChange: (tabTitle: string) => void;
 }
 
 
-const DesktopSkills = ({tabsData,getActivePillIndex,handlePillSelect}:DesktopSkillsProps) => {
+const DesktopSkills = ({tabsData, activeTabState, handlePillSelect, loadMoreCourses,handleTabChange}:DesktopSkillsProps) => {
+
+   const activeTab = tabsData.find(tab => tab.title === activeTabState.tabTitle);
+   if (!activeTab) {
+       console.error(`Active tab data not found for title: ${activeTabState.tabTitle}`);
+       return null;
+   }
+
+
   return (
-    <Tabs defaultValue={tabsData[0]?.title} className="">
-    <div className="w-full shadow-[inset_0_-1px_0_0_#d1d2e0] overflow-auto no-scrollbar">
-      <TabsList className="rounded-none w-fit gap-8 py-6">
-        {tabsData.map((tab) => (
-          <TabsTrigger key={tab.title} value={tab.title} className="">
-            {tab.title}
-          </TabsTrigger>
-        ))}
-      </TabsList>
-    </div>
+    <Tabs value={activeTabState.tabTitle} className="" onValueChange={handleTabChange}>
+        <div className="w-full shadow-[inset_0_-1px_0_0_#d1d2e0] overflow-auto no-scrollbar">
+            <TabsList className="rounded-none w-fit gap-8 py-6">
+                {tabsData.map((tab) => (
+                    <TabsTrigger key={tab.title} value={tab.title} className="">
+                        {tab.title}
+                    </TabsTrigger>
+                ))}
+            </TabsList>
+        </div>
 
-    {/* Tab Content Areas */}
-    {tabsData.map((tab) => {
-      const activePillIndex = getActivePillIndex(tab.title);
-      const activePill = tab.links[activePillIndex];
-      
-      return (
-        <TabsContent key={tab.title} value={tab.title} className="">
-          <div id="tabfilterpils wrapper" className="py-4">
-            {/* Carousel for topics */}
-            <FilterPills 
-              tabPills={tab.links}
-              activePillIndex={activePillIndex}
-              onPillSelect={(pillIndex) => handlePillSelect(tab.title, pillIndex)}
-            />
+        {tabsData.map((tab) => {
+            const isActiveTab = tab.title === activeTabState.tabTitle;
+            return (
+                <TabsContent key={tab.title} value={tab.title} className="">
+                    <div id="tabfilterpils wrapper" className="py-4">
+                        <FilterPills
+                            tabPills={tab.links}
+                            activePillIndex={activeTabState.tabTitle === tab.title ? activeTabState.activePillIndex : 0} 
+                            onPillSelect={(pillIndex) => handlePillSelect(tab.title, pillIndex)}
+                        />
 
-            {/* carousel videos */}
-            <div className="w-full border-2 border-red-500 mt-8">
-              <h3>Courses for {tab.title} - {activePill?.text || "All courses"}</h3>
-           
-            </div>
-          </div>
-        </TabsContent>
-      );
-    })}
-  </Tabs>  
-  )
+                        {/* carousel videos */}
+                        <div className="w-full mt-2">
+                            {isActiveTab && (
+                                <>
+                                    {activeTabState.isLoading && activeTabState.courses.length === 0 ? (
+                                        <p>Loading courses...</p> 
+                                    ) : activeTabState.error ? (
+                                        <p className="text-red-500">Error loading courses: {activeTabState.error}</p> 
+                                    ) : activeTabState.courses.length > 0 ? (
+                                        <CourseCarousel
+                                            courses={activeTabState.courses} 
+                                        />
+                                    ) : (
+                                        <p>No courses found for this selection.</p> 
+                                    )}
+                                </>
+                            )}
+                        </div>
+                    </div>
+                </TabsContent>
+            );
+        })}
+    </Tabs>
+  );
 }
 
-export default DesktopSkills
+
+export default DesktopSkills;

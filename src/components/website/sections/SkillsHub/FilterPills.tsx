@@ -23,7 +23,6 @@ const FilterPills = memo(({
   onPillSelect
 }: FilterPillsProps) => {
 
- console.log("filter pill rerenderd");
 
   return (
     <div className="w-full">

@@ -30,15 +30,15 @@ export const TabData = [
                 "href": "/topic/node-js/",
                 "text": "Node.js"
             },
-             {
+            {
                 "href": "/topic/html5/",
                 "text": "HTML5"
             },
-             {
+            {
                 "href": "/topic/vue-js/",
                 "text": "Vue.js"
             },
-             {
+            {
                 "href": "/topic/django/",
                 "text": "Django"
             }
@@ -67,19 +67,19 @@ export const TabData = [
                 "href": "/topic/kubernetes/",
                 "text": "Kubernetes"
             },
-             {
+            {
                 "href": "/topic/comptia-a-plus/",
                 "text": "CompTIA A+"
             },
-             {
+            {
                 "href": "/topic/ccna/",
                 "text": "CCNA"
             },
-             {
+            {
                 "href": "/topic/cissp/",
                 "text": "CISSP"
             },
-             {
+            {
                 "href": "/topic/pmp/",
                 "text": "PMP"
             }
@@ -108,19 +108,19 @@ export const TabData = [
                 "href": "/topic/emotional-intelligence/",
                 "text": "Emotional Intelligence"
             },
-             {
+            {
                 "href": "/topic/communication-skills/", // Also relevant here
                 "text": "Communication Skills"
             },
-             {
+            {
                 "href": "/topic/team-management/",
                 "text": "Team Management"
             },
-             {
+            {
                 "href": "/topic/decision-making/",
                 "text": "Decision Making"
             },
-             {
+            {
                 "href": "/topic/conflict-management/",
                 "text": "Conflict Management"
             }
@@ -149,19 +149,19 @@ export const TabData = [
                 "href": "/topic/deep-learning/",
                 "text": "Deep Learning"
             },
-             {
+            {
                 "href": "/topic/r-programming/",
                 "text": "R (Programming Language)"
             },
-             {
+            {
                 "href": "/topic/artificial-intelligence/",
                 "text": "Artificial Intelligence"
             },
-             {
+            {
                 "href": "/topic/nlp-natural-language-processing/",
                 "text": "Natural Language Processing"
             },
-             {
+            {
                 "href": "/topic/computer-vision/",
                 "text": "Computer Vision"
             }
@@ -190,15 +190,15 @@ export const TabData = [
                 "href": "/topic/powerpoint/",
                 "text": "PowerPoint"
             },
-             {
+            {
                 "href": "/topic/business-communication/",
                 "text": "Business Communication"
             },
-             {
+            {
                 "href": "/topic/negotiation/",
                 "text": "Negotiation"
             },
-             {
+            {
                 "href": "/topic/interpersonal-skills/",
                 "text": "Interpersonal Skills"
             },
@@ -231,23 +231,23 @@ export const TabData = [
                 "href": "/topic/business-analysis/",
                 "text": "Business Analysis"
             },
-             {
+            {
                 "href": "/topic/tableau/",
                 "text": "Tableau"
             },
-             {
+            {
                 "href": "/topic/financial-modeling/",
                 "text": "Financial Modeling"
             },
-             {
+            {
                 "href": "/topic/business-intelligence/",
                 "text": "Business Intelligence"
             },
             {
-                "href": "/topic/r-programming/", 
+                "href": "/topic/r-programming/",
                 "text": "R (Programming Language)"
             },
-             {
+            {
                 "href": "/topic/google-looker-studio/",
                 "text": "Google Looker Studio (Data Studio)"
             }
@@ -264,5 +264,5 @@ export const TabData = [
 
 
 
-export const courseurl="https://www.udemy.com/api-2.0/discovery-units/bestseller/?apply_campaign_filter=False&context=home&fft=skills_hub_top_new_beginner&fl=lbl&is_content_rankable=False&label_id=158002&member_of=skills_hub_top_new_beginner&safe_for_public_caching=True&sos=pl&source_page=logged_out_homepage&skip_language_filter_for_aggregator=true&skip_price=true&source_page=logged_out_homepage&locale=en_US&currency=inr&navigation_locale=en";
+export const courseurl = "https://www.udemy.com/api-2.0/discovery-units/bestseller/?apply_campaign_filter=False&context=home&fft=skills_hub_top_new_beginner&fl=lbl&is_content_rankable=False&label_id=158002&member_of=skills_hub_top_new_beginner&safe_for_public_caching=True&sos=pl&source_page=logged_out_homepage&skip_language_filter_for_aggregator=true&skip_price=true&source_page=logged_out_homepage&locale=en_US&currency=inr&navigation_locale=en";
 
