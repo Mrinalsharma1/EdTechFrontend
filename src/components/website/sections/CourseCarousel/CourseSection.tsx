@@ -7,7 +7,7 @@ const CourseSection = () => {
 
     return (
      <SectionLayout>
-        <CourseCarousel title="top courses" courses={categorizedCourses.popular}/>
+        <CourseCarousel title="Most Popular on Udemy" courses={categorizedCourses.popular}/>
     </SectionLayout>
   )
 }

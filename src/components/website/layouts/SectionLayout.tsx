@@ -13,7 +13,7 @@ const SectionLayout = ({
   background = 'bg-white',
 }: SectionLayoutProps) => {
   return (
-    <section className={cn('w-full py-12', background, className)}>
+    <section className={cn('w-full py-8', background, className)}>
       <div className='px-2 xl:container mx-auto'>{children}</div>
     </section>
   );
