@@ -184,6 +184,7 @@ function CarouselPrevious({
       size={size}
       className={cn(
         'absolute left-[-20px] top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md border-none cursor-pointer hover:bg-gray-100 transition-colors',
+        !canScrollPrev?"hidden":"block"        ,
         className
       )}
       disabled={!canScrollPrev}
@@ -211,6 +212,7 @@ function CarouselNext({
       size={size}
       className={cn(
         'absolute right-[-20px] top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 shadow-md border-none cursor-pointer hover:bg-gray-100 transition-colors',
+        !canScrollNext?"hidden":"block",
         className
       )}
       disabled={!canScrollNext}

@@ -1,18 +1,18 @@
-import MainCarousel from '@/components/website/mainCarousel/MainCarousel';
-import Memberships from '@/components/website/memberships/Memberships';
-import Testimonials from '@/components/website/testimonials/testimonial';
-import { MainFooter } from '@/components/website/footer/mainfooter';
-
+import Memberships from '@/components/website/sections/memberships/Memberships';
+import { SkillsHubSection } from '@/components/website/sections/SkillsHub/SkillsHubSection';
+import Testimonials from '@/components/website/sections/testimonials/testimonial';
+import FeatureSection from "@/components/website/sections/Features/FeatureSection";
+import MainCarousel from '@/components/website/sections/mainCarousel/MainCarousel';
+import CourseSection from '@/components/website/sections/CourseCarousel/CourseSection';
 const Home = () => {
   return (
-    <main>
-      <MainCarousel />
+    <main className=''>
+      <MainCarousel/>
+      <CourseSection/>
+      <SkillsHubSection/>
+      <FeatureSection/>
       <Memberships />
       <Testimonials />
-      <p className='mt-4 text-lg text-gray-600 cursor-pointer'>
-        Explore courses and start learning today.
-      </p>
-      <MainFooter />
     </main>
   );
 };

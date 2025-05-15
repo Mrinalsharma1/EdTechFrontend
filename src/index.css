@@ -1,3 +1,5 @@
+
+
 @import 'tailwindcss';
 @import 'tw-animate-css';
 
@@ -74,6 +76,15 @@
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+
+  --font-stack-heading-serif: SuisseWorks, Georgia, Times, "Times New Roman", serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  --font-stack-heading: "Udemy Sans", -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+ 
+  --font-stack-text: "Udemy Sans", "SF Pro Text", -apple-system, BlinkMacSystemFont, Roboto, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+
+  
+
 }
 
 .dark {
@@ -116,10 +127,34 @@
   }
 }
 
+@layer utilities {
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+
 body {
   @apply bg-background text-foreground antialiased;
 }
 
+/* Define a utility class for the heading font */
+.font-heading-serif {
+  font-family: var(--font-stack-heading-serif);
+}
+
+/* Define a utility class for the text/subheading font */
+.font-text {
+  font-family: var(--font-stack-text);
+}
+
+.font-heading{
+  font-family: var(--font-stack-heading);
+}
 @layer utilities {
   .text-fluid-heading {
     font-size: 18px;
