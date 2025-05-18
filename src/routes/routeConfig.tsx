@@ -7,9 +7,12 @@ import AdminLayout from '@/layouts/AdminLayout';
 import TeacherLayout from '@/layouts/TeacherLayout';
 import StudentLayout from '@/layouts/StudentLayout';
 import WebsiteLayout from '@/layouts/WebsiteLayout';
+import LoginPage from '@/pages/auth/LoginPage';
+import SignUpPage from '@/pages/auth/SignUpPage';
+import ForgotPass from '@/pages/auth/ForgotPass';
 
 const Home = lazy(() => import('@/pages/website/Home'));
-const Login = lazy(() => import('@/pages/auth/Login'));
+// const Login = lazy(() => import('@/pages/auth/LoginPageDefault'));
 const Unauthorized = lazy(() => import('@/pages/auth/Unauthorized'));
 const NotFound = lazy(() => import('@/pages/NotFound'));
 
@@ -27,7 +30,16 @@ export const routes = [
   // Login Routes
   {
     path: '/login',
-    element: <Login />,
+    // element: <Login />,
+    element: <LoginPage />,
+  },
+  {
+    path: '/signup',
+    element: <SignUpPage />,
+  },
+  {
+    path: '/forgot',
+    element: <ForgotPass />,
   },
   // Unauthorized Routes
   {
