@@ -2,7 +2,7 @@ import { Button } from '../ui/button'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '@/store'
 import { useNavigate } from 'react-router-dom'
-import { logout } from '@/store/slices/authSlice'
+// import { logout } from '@/store/slices/authSlice'
 
 const AuthButton = () => {
   const dispatch = useDispatch()
@@ -10,7 +10,7 @@ const AuthButton = () => {
   const { isAuthenticated } = useSelector((state: RootState) => state.auth)
   const handleAuth = () => {
     if (isAuthenticated) {
-      dispatch(logout())
+      // dispatch(logout())
       navigate('/login')
     } else {
       navigate('/login')

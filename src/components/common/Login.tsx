@@ -1,86 +1,125 @@
-import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { login, UserRole } from '@/store/slices/authSlice';
-import { Button } from '@/components/ui/button';
-import { Label } from '@/components/ui/label';
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from '@/components/ui/select';
 import { useEffect, useState } from 'react';
-import { RootState } from '@/store';
+import { useAppSelector } from '@/hooks/react-redux-hooks';
+import { LoginRequest } from '@/types/auth';
+import { useLoginMutation } from '@/services/endpoints/authApiSlice';
 
 const Login = () => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [role, setRole] = useState<UserRole>('student');
+  const [formData, setFormData] = useState<LoginRequest>({
+    email: '',
+    password: ''
+  });
+
+  const [login, { data, isLoading, isError, isSuccess, error }] = useLoginMutation()
 
   const loggedInUserDetails = {
-    role: useSelector((state: RootState) => state.auth.role),
-    isAuthenticated: useSelector(
-      (state: RootState) => state.auth.isAuthenticated
+    role: useAppSelector((state) => state.auth.user?.role),
+    isAuthenticated: useAppSelector(
+      (state) => state.auth.isAuthenticated
     ),
   };
 
-  const redirectUser = (role: string) => {
-    // Redirect based on role
-    switch (role) {
-      case 'admin':
-        navigate('/admin/dashboard');
-        break;
-      case 'teacher':
-        navigate('/teacher/dashboard');
-        break;
-      case 'student':
-        navigate('/student/dashboard');
-        break;
-      default:
-        navigate('/');
+  const redirectUser = (roles: string[] | undefined) => {
+    if (!roles || roles.length === 0) {
+      navigate('/');
+      return;
+    }
+
+    navigate('/')
+
+    //currenlty no decision on how to track active role either backend will 
+    //send activerole property on user or somehting else til then based on prioroity
+    if (roles.includes('admin')) {
+      navigate('/admin/dashboard');
+    } else if (roles.includes('teacher')) {
+      navigate('/teacher/dashboard');
+    } else if (roles.includes('student')) {
+      navigate('/student/dashboard');
+    } else {
+      navigate('/');
     }
   };
 
-  const handleLogin = () => {
-    dispatch(login(role));
 
-    // Redirect based on role
-    redirectUser(role);
-  };
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
+    console.log("form submitted", formData);
+    try {
+      await login(formData).unwrap();
+    } catch (err) {
+      console.error('Failed to login:', err);
+    }
+
+
+  }
+
+  // const handleLogin = () => {
+  //   // dispatch(login(role));
+  //   // Redirect based on role
+  //   redirectUser(role);
+  // };
 
   useEffect(() => {
     if (loggedInUserDetails.isAuthenticated) {
-      // Redirect based on role
       redirectUser(loggedInUserDetails.role);
     }
-  }, [loggedInUserDetails]);
+  }, [loggedInUserDetails.isAuthenticated, loggedInUserDetails.role, navigate]);
+
 
   return (
-    <div className='min-h-screen flex items-center justify-center bg-gray-100'>
-      <div className='bg-white p-8 rounded-lg shadow-md w-full max-w-sm'>
-        <h2 className='text-2xl font-semibold mb-6 text-center'>Login</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white p-8 rounded-2xl shadow-lg w-full max-w-sm">
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Login</h2>
 
-        <div className='mb-4'>
-          <Label htmlFor='role'>Select Role</Label>
-          <Select
-            value={role}
-            onValueChange={(value) => setRole(value as UserRole)}
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, email: e.target.value }))
+              }
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          <div>
+            <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+              Password
+            </label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={(e) =>
+                setFormData((prev) => ({ ...prev, password: e.target.value }))
+              }
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          <button
+            type="submit"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-lg font-semibold transition"
+            disabled={isLoading}
           >
-            <SelectTrigger id='role' className='mt-2'>
-              <SelectValue placeholder='Select your role' />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value='admin'>Admin</SelectItem>
-              <SelectItem value='teacher'>Teacher</SelectItem>
-              <SelectItem value='student'>Student</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-
-        <Button className='w-full' onClick={handleLogin}>
-          Login as {role.charAt(0).toUpperCase() + role.slice(1)}
-        </Button>
+            {isLoading ? 'Logging in...' : 'Login'}
+          </button>
+          {isError && (
+            <p className="text-red-500 text-sm text-center">
+              {error && 'data' in error ? (error.data as { message: string }).message : 'Login failed. Please try again.'}
+            </p>
+          )}
+        </form>
       </div>
     </div>
   );
