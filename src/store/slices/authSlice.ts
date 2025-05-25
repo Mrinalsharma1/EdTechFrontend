@@ -1,32 +1,31 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { User } from "@/types/auth";
 
-export type UserRole = "admin" | "student" | "teacher" | "guest";
-
-interface AuthState {
+type AuthState = {
+  user: User | null
   isAuthenticated: boolean;
-  role: UserRole;
 }
 
 const initialState: AuthState = {
-  isAuthenticated: true,
-  role: "admin",
+  user: null,
+  isAuthenticated: false,
 };
+
 
 const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<UserRole>) => {
+
+    addUser: (state, action: PayloadAction<User>) => {
+      state.user = action.payload
       state.isAuthenticated = true;
-      state.role = action.payload;
     },
-    logout: (state) => {
-      state.isAuthenticated = false;
-      state.role = "guest";
-    },
+
+    //todo:will add all other reducers of auth after full adduser flow is tested
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { addUser } = authSlice.actions;
 
 export default authSlice.reducer;
